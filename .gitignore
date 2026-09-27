@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+
+# Unity Temporary Files
+unity/Library/
+unity/Temp/
+unity/Obj/
+unity/Build/
+unity/Logs/
+unity/UserSettings/
+
+# 学習成果(モデル・VecNormalize統計・チェックポイント・TensorBoardログ)は
+# すべて models/runs/<タイムスタンプ>/ 以下にまとまっているため、runsごと無視すればよい
+models/runs/
+!models/.gitkeep
