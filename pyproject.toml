@@ -2,13 +2,15 @@
 name = "drone-ai-project"
 version = "0.1.0"
 description = "PyBullet -> Unity ML-Agents ドローンRLパイプライン(フルエンドツーエンド版)"
-requires-python = ">=3.10.1,<=3.10.12"
-
+requires-python = ">=3.10,<3.11"   # 公式ドキュメント準拠(3.10.1〜3.10.12を推奨)
 dependencies = [
     "gymnasium==0.29.1",
     "pybullet==3.2.6",
     "stable-baselines3==2.2.1",
     "mlagents-envs==1.1.0",
+    # UnityToGymWrapper (mlagents_envs.envs.unity_gym_env) は今も旧OpenAI Gym API
+    # (step()が4要素タプルを返す)実装のため、SB3(gymnasium前提)で使うには
+    # 下記2つが必須。無いとImportError/変換エラーになる。
     "gym==0.26.2",
     "shimmy>=0.2.1",
     "numpy<2.0.0",
@@ -16,5 +18,10 @@ dependencies = [
     "tensorboard",
 ]
 
-[tool.uv]
-only-binary = ["pybullet"]
+# --- Unity 6.3 LTS 向け構成(2026年時点で確認済み) ---
+# - com.unity.ml-agents (C#側, Package Manager) は最新版(4.0.x系)を使うこと。
+#   最小サポートUnityバージョンが6000.0に更新されているため、
+#   Unity 6.3 LTSとの組み合わせで問題ない。
+# - gym-unity パッケージは廃止され mlagents_envs に統合された。
+#   import は `from mlagents_envs.envs.unity_gym_env import UnityToGymWrapper` を使うこと
+#   (旧 `from gym_unity.envs import UnityToGymWrapper` は使えない)。
