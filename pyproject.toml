@@ -18,6 +18,9 @@ dependencies = [
     "tensorboard",
 ]
 
+[tool.uv]
+only-binary = ["pybullet"]
+
 # --- Unity 6.3 LTS 向け構成(2026年時点で確認済み) ---
 # - com.unity.ml-agents (C#側, Package Manager) は最新版(4.0.x系)を使うこと。
 #   最小サポートUnityバージョンが6000.0に更新されているため、
