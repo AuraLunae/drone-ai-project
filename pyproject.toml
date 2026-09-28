@@ -16,6 +16,7 @@ dependencies = [
     "numpy<2.0.0",
     "torch",
     "tensorboard",
+    "setuptools<81",
 ]
 
 # --- Unity 6.3 LTS 向け構成(2026年時点で確認済み) ---
